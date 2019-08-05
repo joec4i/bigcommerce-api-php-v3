@@ -1,6 +1,6 @@
 <?php
 /**
- * ItemGiftCertificate
+ * LineItem
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \BigCommerce\Api\V3\ObjectSerializer;
 
 /**
- * ItemGiftCertificate Class Doc Comment
+ * LineItem Class Doc Comment
  *
  * @category Class
  * @package  BigCommerce\Api\V3
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ItemGiftCertificate implements ModelInterface, ArrayAccess
+class LineItem implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'Item Gift Certificate';
+    protected static $swaggerModelName = 'Line Item';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,14 +57,10 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'string',
-        'name' => 'string',
-        'theme' => 'string',
-        'amount' => 'float',
-        'is_taxable' => 'bool',
-        'sender' => '\BigCommerce\Api\V3\Model\Cart\ContactEntity',
-        'recipient' => '\BigCommerce\Api\V3\Model\Cart\ContactEntity',
-        'message' => 'string'
+        'physical_items' => 'object[]',
+        'digital_items' => 'object[]',
+        'gift_certificates' => '\BigCommerce\Api\V3\Model\Cart\ItemGiftCertificate[]',
+        'virtual_items' => '\BigCommerce\Api\V3\Model\Cart\ItemCustom[]'
     ];
 
     /**
@@ -73,14 +69,10 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'id' => null,
-        'name' => null,
-        'theme' => null,
-        'amount' => null,
-        'is_taxable' => null,
-        'sender' => null,
-        'recipient' => null,
-        'message' => null
+        'physical_items' => null,
+        'digital_items' => null,
+        'gift_certificates' => null,
+        'virtual_items' => null
     ];
 
     /**
@@ -110,14 +102,10 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'name' => 'name',
-        'theme' => 'theme',
-        'amount' => 'amount',
-        'is_taxable' => 'is_taxable',
-        'sender' => 'sender',
-        'recipient' => 'recipient',
-        'message' => 'message'
+        'physical_items' => 'physical_items',
+        'digital_items' => 'digital_items',
+        'gift_certificates' => 'gift_certificates',
+        'virtual_items' => 'virtual_items'
     ];
 
     /**
@@ -126,14 +114,10 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'name' => 'setName',
-        'theme' => 'setTheme',
-        'amount' => 'setAmount',
-        'is_taxable' => 'setIsTaxable',
-        'sender' => 'setSender',
-        'recipient' => 'setRecipient',
-        'message' => 'setMessage'
+        'physical_items' => 'setPhysicalItems',
+        'digital_items' => 'setDigitalItems',
+        'gift_certificates' => 'setGiftCertificates',
+        'virtual_items' => 'setVirtualItems'
     ];
 
     /**
@@ -142,14 +126,10 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'name' => 'getName',
-        'theme' => 'getTheme',
-        'amount' => 'getAmount',
-        'is_taxable' => 'getIsTaxable',
-        'sender' => 'getSender',
-        'recipient' => 'getRecipient',
-        'message' => 'getMessage'
+        'physical_items' => 'getPhysicalItems',
+        'digital_items' => 'getDigitalItems',
+        'gift_certificates' => 'getGiftCertificates',
+        'virtual_items' => 'getVirtualItems'
     ];
 
     /**
@@ -212,14 +192,10 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['theme'] = isset($data['theme']) ? $data['theme'] : null;
-        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
-        $this->container['is_taxable'] = isset($data['is_taxable']) ? $data['is_taxable'] : null;
-        $this->container['sender'] = isset($data['sender']) ? $data['sender'] : null;
-        $this->container['recipient'] = isset($data['recipient']) ? $data['recipient'] : null;
-        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
+        $this->container['physical_items'] = isset($data['physical_items']) ? $data['physical_items'] : null;
+        $this->container['digital_items'] = isset($data['digital_items']) ? $data['digital_items'] : null;
+        $this->container['gift_certificates'] = isset($data['gift_certificates']) ? $data['gift_certificates'] : null;
+        $this->container['virtual_items'] = isset($data['virtual_items']) ? $data['virtual_items'] : null;
     }
 
     /**
@@ -231,17 +207,11 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['theme'] === null) {
-            $invalidProperties[] = "'theme' can't be null";
+        if ($this->container['physical_items'] === null) {
+            $invalidProperties[] = "'physical_items' can't be null";
         }
-        if ($this->container['amount'] === null) {
-            $invalidProperties[] = "'amount' can't be null";
-        }
-        if ($this->container['sender'] === null) {
-            $invalidProperties[] = "'sender' can't be null";
-        }
-        if ($this->container['recipient'] === null) {
-            $invalidProperties[] = "'recipient' can't be null";
+        if ($this->container['digital_items'] === null) {
+            $invalidProperties[] = "'digital_items' can't be null";
         }
         return $invalidProperties;
     }
@@ -259,193 +229,97 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets id
+     * Gets physical_items
      *
-     * @return string
+     * @return object[]
      */
-    public function getId()
+    public function getPhysicalItems()
     {
-        return $this->container['id'];
+        return $this->container['physical_items'];
     }
 
     /**
-     * Sets id
+     * Sets physical_items
      *
-     * @param string $id id
+     * @param object[] $physical_items physical_items
      *
      * @return $this
      */
-    public function setId($id)
+    public function setPhysicalItems($physical_items)
     {
-        $this->container['id'] = $id;
+        $this->container['physical_items'] = $physical_items;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets digital_items
      *
-     * @return string
+     * @return object[]
      */
-    public function getName()
+    public function getDigitalItems()
     {
-        return $this->container['name'];
+        return $this->container['digital_items'];
     }
 
     /**
-     * Sets name
+     * Sets digital_items
      *
-     * @param string $name GiftCertificate-provided name that will appear in the control panel.
+     * @param object[] $digital_items digital_items
      *
      * @return $this
      */
-    public function setName($name)
+    public function setDigitalItems($digital_items)
     {
-        $this->container['name'] = $name;
+        $this->container['digital_items'] = $digital_items;
 
         return $this;
     }
 
     /**
-     * Gets theme
+     * Gets gift_certificates
      *
-     * @return string
+     * @return \BigCommerce\Api\V3\Model\Cart\ItemGiftCertificate[]
      */
-    public function getTheme()
+    public function getGiftCertificates()
     {
-        return $this->container['theme'];
+        return $this->container['gift_certificates'];
     }
 
     /**
-     * Sets theme
+     * Sets gift_certificates
      *
-     * @param string $theme Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.
+     * @param \BigCommerce\Api\V3\Model\Cart\ItemGiftCertificate[] $gift_certificates gift_certificates
      *
      * @return $this
      */
-    public function setTheme($theme)
+    public function setGiftCertificates($gift_certificates)
     {
-        $this->container['theme'] = $theme;
+        $this->container['gift_certificates'] = $gift_certificates;
 
         return $this;
     }
 
     /**
-     * Gets amount
+     * Gets virtual_items
      *
-     * @return float
+     * @return \BigCommerce\Api\V3\Model\Cart\ItemCustom[]
      */
-    public function getAmount()
+    public function getVirtualItems()
     {
-        return $this->container['amount'];
+        return $this->container['virtual_items'];
     }
 
     /**
-     * Sets amount
+     * Sets virtual_items
      *
-     * @param float $amount Value must be between 1.00 and 1,000.00 in the store's default currency.
+     * @param \BigCommerce\Api\V3\Model\Cart\ItemCustom[] $virtual_items virtual_items
      *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setVirtualItems($virtual_items)
     {
-        $this->container['amount'] = $amount;
-
-        return $this;
-    }
-
-    /**
-     * Gets is_taxable
-     *
-     * @return bool
-     */
-    public function getIsTaxable()
-    {
-        return $this->container['is_taxable'];
-    }
-
-    /**
-     * Sets is_taxable
-     *
-     * @param bool $is_taxable is_taxable
-     *
-     * @return $this
-     */
-    public function setIsTaxable($is_taxable)
-    {
-        $this->container['is_taxable'] = $is_taxable;
-
-        return $this;
-    }
-
-    /**
-     * Gets sender
-     *
-     * @return \BigCommerce\Api\V3\Model\Cart\ContactEntity
-     */
-    public function getSender()
-    {
-        return $this->container['sender'];
-    }
-
-    /**
-     * Sets sender
-     *
-     * @param \BigCommerce\Api\V3\Model\Cart\ContactEntity $sender sender
-     *
-     * @return $this
-     */
-    public function setSender($sender)
-    {
-        $this->container['sender'] = $sender;
-
-        return $this;
-    }
-
-    /**
-     * Gets recipient
-     *
-     * @return \BigCommerce\Api\V3\Model\Cart\ContactEntity
-     */
-    public function getRecipient()
-    {
-        return $this->container['recipient'];
-    }
-
-    /**
-     * Sets recipient
-     *
-     * @param \BigCommerce\Api\V3\Model\Cart\ContactEntity $recipient recipient
-     *
-     * @return $this
-     */
-    public function setRecipient($recipient)
-    {
-        $this->container['recipient'] = $recipient;
-
-        return $this;
-    }
-
-    /**
-     * Gets message
-     *
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->container['message'];
-    }
-
-    /**
-     * Sets message
-     *
-     * @param string $message Limited to 200 characters.
-     *
-     * @return $this
-     */
-    public function setMessage($message)
-    {
-        $this->container['message'] = $message;
+        $this->container['virtual_items'] = $virtual_items;
 
         return $this;
     }

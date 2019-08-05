@@ -1,6 +1,6 @@
 <?php
 /**
- * ItemGiftCertificate
+ * ItemCustom
  *
  * PHP version 5
  *
@@ -33,14 +33,15 @@ use \ArrayAccess;
 use \BigCommerce\Api\V3\ObjectSerializer;
 
 /**
- * ItemGiftCertificate Class Doc Comment
+ * ItemCustom Class Doc Comment
  *
  * @category Class
+ * @description Add a custom item to the shoppers cart.  * Custom items are not added to the catalog. * The price should be set to match the store settings for taxes.
  * @package  BigCommerce\Api\V3
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ItemGiftCertificate implements ModelInterface, ArrayAccess
+class ItemCustom implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'Item Gift Certificate';
+    protected static $swaggerModelName = 'Item Custom';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,13 +59,10 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'id' => 'string',
+        'sku' => 'string',
         'name' => 'string',
-        'theme' => 'string',
-        'amount' => 'float',
-        'is_taxable' => 'bool',
-        'sender' => '\BigCommerce\Api\V3\Model\Cart\ContactEntity',
-        'recipient' => '\BigCommerce\Api\V3\Model\Cart\ContactEntity',
-        'message' => 'string'
+        'quantity' => 'string',
+        'list_price' => 'string'
     ];
 
     /**
@@ -74,13 +72,10 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'id' => null,
+        'sku' => null,
         'name' => null,
-        'theme' => null,
-        'amount' => null,
-        'is_taxable' => null,
-        'sender' => null,
-        'recipient' => null,
-        'message' => null
+        'quantity' => null,
+        'list_price' => null
     ];
 
     /**
@@ -111,13 +106,10 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'id' => 'id',
+        'sku' => 'sku',
         'name' => 'name',
-        'theme' => 'theme',
-        'amount' => 'amount',
-        'is_taxable' => 'is_taxable',
-        'sender' => 'sender',
-        'recipient' => 'recipient',
-        'message' => 'message'
+        'quantity' => 'quantity',
+        'list_price' => 'list_price'
     ];
 
     /**
@@ -127,13 +119,10 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'id' => 'setId',
+        'sku' => 'setSku',
         'name' => 'setName',
-        'theme' => 'setTheme',
-        'amount' => 'setAmount',
-        'is_taxable' => 'setIsTaxable',
-        'sender' => 'setSender',
-        'recipient' => 'setRecipient',
-        'message' => 'setMessage'
+        'quantity' => 'setQuantity',
+        'list_price' => 'setListPrice'
     ];
 
     /**
@@ -143,13 +132,10 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'id' => 'getId',
+        'sku' => 'getSku',
         'name' => 'getName',
-        'theme' => 'getTheme',
-        'amount' => 'getAmount',
-        'is_taxable' => 'getIsTaxable',
-        'sender' => 'getSender',
-        'recipient' => 'getRecipient',
-        'message' => 'getMessage'
+        'quantity' => 'getQuantity',
+        'list_price' => 'getListPrice'
     ];
 
     /**
@@ -213,13 +199,10 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['sku'] = isset($data['sku']) ? $data['sku'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['theme'] = isset($data['theme']) ? $data['theme'] : null;
-        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
-        $this->container['is_taxable'] = isset($data['is_taxable']) ? $data['is_taxable'] : null;
-        $this->container['sender'] = isset($data['sender']) ? $data['sender'] : null;
-        $this->container['recipient'] = isset($data['recipient']) ? $data['recipient'] : null;
-        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
+        $this->container['quantity'] = isset($data['quantity']) ? $data['quantity'] : null;
+        $this->container['list_price'] = isset($data['list_price']) ? $data['list_price'] : null;
     }
 
     /**
@@ -231,18 +214,6 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['theme'] === null) {
-            $invalidProperties[] = "'theme' can't be null";
-        }
-        if ($this->container['amount'] === null) {
-            $invalidProperties[] = "'amount' can't be null";
-        }
-        if ($this->container['sender'] === null) {
-            $invalidProperties[] = "'sender' can't be null";
-        }
-        if ($this->container['recipient'] === null) {
-            $invalidProperties[] = "'recipient' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -271,13 +242,37 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param string $id id
+     * @param string $id Id of the custom item
      *
      * @return $this
      */
     public function setId($id)
     {
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets sku
+     *
+     * @return string
+     */
+    public function getSku()
+    {
+        return $this->container['sku'];
+    }
+
+    /**
+     * Sets sku
+     *
+     * @param string $sku Custom item sku
+     *
+     * @return $this
+     */
+    public function setSku($sku)
+    {
+        $this->container['sku'] = $sku;
 
         return $this;
     }
@@ -295,7 +290,7 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
     /**
      * Sets name
      *
-     * @param string $name GiftCertificate-provided name that will appear in the control panel.
+     * @param string $name Item name
      *
      * @return $this
      */
@@ -307,145 +302,49 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets theme
+     * Gets quantity
      *
      * @return string
      */
-    public function getTheme()
+    public function getQuantity()
     {
-        return $this->container['theme'];
+        return $this->container['quantity'];
     }
 
     /**
-     * Sets theme
+     * Sets quantity
      *
-     * @param string $theme Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.
+     * @param string $quantity quantity
      *
      * @return $this
      */
-    public function setTheme($theme)
+    public function setQuantity($quantity)
     {
-        $this->container['theme'] = $theme;
+        $this->container['quantity'] = $quantity;
 
         return $this;
     }
 
     /**
-     * Gets amount
-     *
-     * @return float
-     */
-    public function getAmount()
-    {
-        return $this->container['amount'];
-    }
-
-    /**
-     * Sets amount
-     *
-     * @param float $amount Value must be between 1.00 and 1,000.00 in the store's default currency.
-     *
-     * @return $this
-     */
-    public function setAmount($amount)
-    {
-        $this->container['amount'] = $amount;
-
-        return $this;
-    }
-
-    /**
-     * Gets is_taxable
-     *
-     * @return bool
-     */
-    public function getIsTaxable()
-    {
-        return $this->container['is_taxable'];
-    }
-
-    /**
-     * Sets is_taxable
-     *
-     * @param bool $is_taxable is_taxable
-     *
-     * @return $this
-     */
-    public function setIsTaxable($is_taxable)
-    {
-        $this->container['is_taxable'] = $is_taxable;
-
-        return $this;
-    }
-
-    /**
-     * Gets sender
-     *
-     * @return \BigCommerce\Api\V3\Model\Cart\ContactEntity
-     */
-    public function getSender()
-    {
-        return $this->container['sender'];
-    }
-
-    /**
-     * Sets sender
-     *
-     * @param \BigCommerce\Api\V3\Model\Cart\ContactEntity $sender sender
-     *
-     * @return $this
-     */
-    public function setSender($sender)
-    {
-        $this->container['sender'] = $sender;
-
-        return $this;
-    }
-
-    /**
-     * Gets recipient
-     *
-     * @return \BigCommerce\Api\V3\Model\Cart\ContactEntity
-     */
-    public function getRecipient()
-    {
-        return $this->container['recipient'];
-    }
-
-    /**
-     * Sets recipient
-     *
-     * @param \BigCommerce\Api\V3\Model\Cart\ContactEntity $recipient recipient
-     *
-     * @return $this
-     */
-    public function setRecipient($recipient)
-    {
-        $this->container['recipient'] = $recipient;
-
-        return $this;
-    }
-
-    /**
-     * Gets message
+     * Gets list_price
      *
      * @return string
      */
-    public function getMessage()
+    public function getListPrice()
     {
-        return $this->container['message'];
+        return $this->container['list_price'];
     }
 
     /**
-     * Sets message
+     * Sets list_price
      *
-     * @param string $message Limited to 200 characters.
+     * @param string $list_price Price of the item. With or without tax depending on your stores set up.
      *
      * @return $this
      */
-    public function setMessage($message)
+    public function setListPrice($list_price)
     {
-        $this->container['message'] = $message;
+        $this->container['list_price'] = $list_price;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * ItemGiftCertificate
+ * InlineResponse201CouponsCouponCode
  *
  * PHP version 5
  *
@@ -33,14 +33,15 @@ use \ArrayAccess;
 use \BigCommerce\Api\V3\ObjectSerializer;
 
 /**
- * ItemGiftCertificate Class Doc Comment
+ * InlineResponse201CouponsCouponCode Class Doc Comment
  *
  * @category Class
+ * @description The coupon code
  * @package  BigCommerce\Api\V3
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ItemGiftCertificate implements ModelInterface, ArrayAccess
+class InlineResponse201CouponsCouponCode implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'Item Gift Certificate';
+    protected static $swaggerModelName = 'inline_response_201_coupons_coupon_code';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,14 +58,13 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'string',
+        'id' => 'int',
+        'code' => 'string',
         'name' => 'string',
-        'theme' => 'string',
-        'amount' => 'float',
-        'is_taxable' => 'bool',
-        'sender' => '\BigCommerce\Api\V3\Model\Cart\ContactEntity',
-        'recipient' => '\BigCommerce\Api\V3\Model\Cart\ContactEntity',
-        'message' => 'string'
+        'discount_type' => 'int',
+        'discount_amount' => 'int',
+        'expires_date' => 'int',
+        'total_discount' => 'float'
     ];
 
     /**
@@ -74,13 +74,12 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'id' => null,
+        'code' => null,
         'name' => null,
-        'theme' => null,
-        'amount' => null,
-        'is_taxable' => null,
-        'sender' => null,
-        'recipient' => null,
-        'message' => null
+        'discount_type' => null,
+        'discount_amount' => null,
+        'expires_date' => null,
+        'total_discount' => null
     ];
 
     /**
@@ -111,13 +110,12 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'id' => 'id',
+        'code' => 'code',
         'name' => 'name',
-        'theme' => 'theme',
-        'amount' => 'amount',
-        'is_taxable' => 'is_taxable',
-        'sender' => 'sender',
-        'recipient' => 'recipient',
-        'message' => 'message'
+        'discount_type' => 'discountType',
+        'discount_amount' => 'discountAmount',
+        'expires_date' => 'expiresDate',
+        'total_discount' => 'totalDiscount'
     ];
 
     /**
@@ -127,13 +125,12 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'id' => 'setId',
+        'code' => 'setCode',
         'name' => 'setName',
-        'theme' => 'setTheme',
-        'amount' => 'setAmount',
-        'is_taxable' => 'setIsTaxable',
-        'sender' => 'setSender',
-        'recipient' => 'setRecipient',
-        'message' => 'setMessage'
+        'discount_type' => 'setDiscountType',
+        'discount_amount' => 'setDiscountAmount',
+        'expires_date' => 'setExpiresDate',
+        'total_discount' => 'setTotalDiscount'
     ];
 
     /**
@@ -143,13 +140,12 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'id' => 'getId',
+        'code' => 'getCode',
         'name' => 'getName',
-        'theme' => 'getTheme',
-        'amount' => 'getAmount',
-        'is_taxable' => 'getIsTaxable',
-        'sender' => 'getSender',
-        'recipient' => 'getRecipient',
-        'message' => 'getMessage'
+        'discount_type' => 'getDiscountType',
+        'discount_amount' => 'getDiscountAmount',
+        'expires_date' => 'getExpiresDate',
+        'total_discount' => 'getTotalDiscount'
     ];
 
     /**
@@ -213,13 +209,12 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['code'] = isset($data['code']) ? $data['code'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['theme'] = isset($data['theme']) ? $data['theme'] : null;
-        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
-        $this->container['is_taxable'] = isset($data['is_taxable']) ? $data['is_taxable'] : null;
-        $this->container['sender'] = isset($data['sender']) ? $data['sender'] : null;
-        $this->container['recipient'] = isset($data['recipient']) ? $data['recipient'] : null;
-        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
+        $this->container['discount_type'] = isset($data['discount_type']) ? $data['discount_type'] : null;
+        $this->container['discount_amount'] = isset($data['discount_amount']) ? $data['discount_amount'] : null;
+        $this->container['expires_date'] = isset($data['expires_date']) ? $data['expires_date'] : null;
+        $this->container['total_discount'] = isset($data['total_discount']) ? $data['total_discount'] : null;
     }
 
     /**
@@ -231,18 +226,6 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['theme'] === null) {
-            $invalidProperties[] = "'theme' can't be null";
-        }
-        if ($this->container['amount'] === null) {
-            $invalidProperties[] = "'amount' can't be null";
-        }
-        if ($this->container['sender'] === null) {
-            $invalidProperties[] = "'sender' can't be null";
-        }
-        if ($this->container['recipient'] === null) {
-            $invalidProperties[] = "'recipient' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -261,7 +244,7 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
     /**
      * Gets id
      *
-     * @return string
+     * @return int
      */
     public function getId()
     {
@@ -271,13 +254,37 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param string $id id
+     * @param int $id Coupon Id
      *
      * @return $this
      */
     public function setId($id)
     {
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets code
+     *
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->container['code'];
+    }
+
+    /**
+     * Sets code
+     *
+     * @param string $code The coupon code. Required in a /POST request.
+     *
+     * @return $this
+     */
+    public function setCode($code)
+    {
+        $this->container['code'] = $code;
 
         return $this;
     }
@@ -295,7 +302,7 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
     /**
      * Sets name
      *
-     * @param string $name GiftCertificate-provided name that will appear in the control panel.
+     * @param string $name Name given to the coupon in the Control Panel
      *
      * @return $this
      */
@@ -307,145 +314,97 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets theme
+     * Gets discount_type
      *
-     * @return string
+     * @return int
      */
-    public function getTheme()
+    public function getDiscountType()
     {
-        return $this->container['theme'];
+        return $this->container['discount_type'];
     }
 
     /**
-     * Sets theme
+     * Sets discount_type
      *
-     * @param string $theme Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.
+     * @param int $discount_type The discount type.  - type 0: per_item_discount - type 1: percentage_discount - type 2: per_total_discount - type 3: shipping_discount - type 4: free_shipping
      *
      * @return $this
      */
-    public function setTheme($theme)
+    public function setDiscountType($discount_type)
     {
-        $this->container['theme'] = $theme;
+        $this->container['discount_type'] = $discount_type;
 
         return $this;
     }
 
     /**
-     * Gets amount
+     * Gets discount_amount
+     *
+     * @return int
+     */
+    public function getDiscountAmount()
+    {
+        return $this->container['discount_amount'];
+    }
+
+    /**
+     * Sets discount_amount
+     *
+     * @param int $discount_amount The amount of the discount based on the coupoon. For example 3 percent off will show a 3.
+     *
+     * @return $this
+     */
+    public function setDiscountAmount($discount_amount)
+    {
+        $this->container['discount_amount'] = $discount_amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets expires_date
+     *
+     * @return int
+     */
+    public function getExpiresDate()
+    {
+        return $this->container['expires_date'];
+    }
+
+    /**
+     * Sets expires_date
+     *
+     * @param int $expires_date Returns 0 if a expiration date is not set
+     *
+     * @return $this
+     */
+    public function setExpiresDate($expires_date)
+    {
+        $this->container['expires_date'] = $expires_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_discount
      *
      * @return float
      */
-    public function getAmount()
+    public function getTotalDiscount()
     {
-        return $this->container['amount'];
+        return $this->container['total_discount'];
     }
 
     /**
-     * Sets amount
+     * Sets total_discount
      *
-     * @param float $amount Value must be between 1.00 and 1,000.00 in the store's default currency.
+     * @param float $total_discount Total discount amount off cart
      *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setTotalDiscount($total_discount)
     {
-        $this->container['amount'] = $amount;
-
-        return $this;
-    }
-
-    /**
-     * Gets is_taxable
-     *
-     * @return bool
-     */
-    public function getIsTaxable()
-    {
-        return $this->container['is_taxable'];
-    }
-
-    /**
-     * Sets is_taxable
-     *
-     * @param bool $is_taxable is_taxable
-     *
-     * @return $this
-     */
-    public function setIsTaxable($is_taxable)
-    {
-        $this->container['is_taxable'] = $is_taxable;
-
-        return $this;
-    }
-
-    /**
-     * Gets sender
-     *
-     * @return \BigCommerce\Api\V3\Model\Cart\ContactEntity
-     */
-    public function getSender()
-    {
-        return $this->container['sender'];
-    }
-
-    /**
-     * Sets sender
-     *
-     * @param \BigCommerce\Api\V3\Model\Cart\ContactEntity $sender sender
-     *
-     * @return $this
-     */
-    public function setSender($sender)
-    {
-        $this->container['sender'] = $sender;
-
-        return $this;
-    }
-
-    /**
-     * Gets recipient
-     *
-     * @return \BigCommerce\Api\V3\Model\Cart\ContactEntity
-     */
-    public function getRecipient()
-    {
-        return $this->container['recipient'];
-    }
-
-    /**
-     * Sets recipient
-     *
-     * @param \BigCommerce\Api\V3\Model\Cart\ContactEntity $recipient recipient
-     *
-     * @return $this
-     */
-    public function setRecipient($recipient)
-    {
-        $this->container['recipient'] = $recipient;
-
-        return $this;
-    }
-
-    /**
-     * Gets message
-     *
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->container['message'];
-    }
-
-    /**
-     * Sets message
-     *
-     * @param string $message Limited to 200 characters.
-     *
-     * @return $this
-     */
-    public function setMessage($message)
-    {
-        $this->container['message'] = $message;
+        $this->container['total_discount'] = $total_discount;
 
         return $this;
     }

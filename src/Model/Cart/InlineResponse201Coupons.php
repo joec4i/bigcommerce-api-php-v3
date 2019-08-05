@@ -1,6 +1,6 @@
 <?php
 /**
- * ItemGiftCertificate
+ * InlineResponse201Coupons
  *
  * PHP version 5
  *
@@ -33,14 +33,15 @@ use \ArrayAccess;
 use \BigCommerce\Api\V3\ObjectSerializer;
 
 /**
- * ItemGiftCertificate Class Doc Comment
+ * InlineResponse201Coupons Class Doc Comment
  *
  * @category Class
+ * @description Required in a
  * @package  BigCommerce\Api\V3
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ItemGiftCertificate implements ModelInterface, ArrayAccess
+class InlineResponse201Coupons implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'Item Gift Certificate';
+    protected static $swaggerModelName = 'inline_response_201_coupons';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,14 +58,7 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'string',
-        'name' => 'string',
-        'theme' => 'string',
-        'amount' => 'float',
-        'is_taxable' => 'bool',
-        'sender' => '\BigCommerce\Api\V3\Model\Cart\ContactEntity',
-        'recipient' => '\BigCommerce\Api\V3\Model\Cart\ContactEntity',
-        'message' => 'string'
+        'coupon_code' => '\BigCommerce\Api\V3\Model\Cart\InlineResponse201CouponsCouponCode'
     ];
 
     /**
@@ -73,14 +67,7 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'id' => null,
-        'name' => null,
-        'theme' => null,
-        'amount' => null,
-        'is_taxable' => null,
-        'sender' => null,
-        'recipient' => null,
-        'message' => null
+        'coupon_code' => null
     ];
 
     /**
@@ -110,14 +97,7 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'name' => 'name',
-        'theme' => 'theme',
-        'amount' => 'amount',
-        'is_taxable' => 'is_taxable',
-        'sender' => 'sender',
-        'recipient' => 'recipient',
-        'message' => 'message'
+        'coupon_code' => 'coupon_code'
     ];
 
     /**
@@ -126,14 +106,7 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'name' => 'setName',
-        'theme' => 'setTheme',
-        'amount' => 'setAmount',
-        'is_taxable' => 'setIsTaxable',
-        'sender' => 'setSender',
-        'recipient' => 'setRecipient',
-        'message' => 'setMessage'
+        'coupon_code' => 'setCouponCode'
     ];
 
     /**
@@ -142,14 +115,7 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'name' => 'getName',
-        'theme' => 'getTheme',
-        'amount' => 'getAmount',
-        'is_taxable' => 'getIsTaxable',
-        'sender' => 'getSender',
-        'recipient' => 'getRecipient',
-        'message' => 'getMessage'
+        'coupon_code' => 'getCouponCode'
     ];
 
     /**
@@ -212,14 +178,7 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['theme'] = isset($data['theme']) ? $data['theme'] : null;
-        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
-        $this->container['is_taxable'] = isset($data['is_taxable']) ? $data['is_taxable'] : null;
-        $this->container['sender'] = isset($data['sender']) ? $data['sender'] : null;
-        $this->container['recipient'] = isset($data['recipient']) ? $data['recipient'] : null;
-        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
+        $this->container['coupon_code'] = isset($data['coupon_code']) ? $data['coupon_code'] : null;
     }
 
     /**
@@ -231,17 +190,8 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['theme'] === null) {
-            $invalidProperties[] = "'theme' can't be null";
-        }
-        if ($this->container['amount'] === null) {
-            $invalidProperties[] = "'amount' can't be null";
-        }
-        if ($this->container['sender'] === null) {
-            $invalidProperties[] = "'sender' can't be null";
-        }
-        if ($this->container['recipient'] === null) {
-            $invalidProperties[] = "'recipient' can't be null";
+        if ($this->container['coupon_code'] === null) {
+            $invalidProperties[] = "'coupon_code' can't be null";
         }
         return $invalidProperties;
     }
@@ -259,193 +209,25 @@ class ItemGiftCertificate implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets id
+     * Gets coupon_code
      *
-     * @return string
+     * @return \BigCommerce\Api\V3\Model\Cart\InlineResponse201CouponsCouponCode
      */
-    public function getId()
+    public function getCouponCode()
     {
-        return $this->container['id'];
+        return $this->container['coupon_code'];
     }
 
     /**
-     * Sets id
+     * Sets coupon_code
      *
-     * @param string $id id
+     * @param \BigCommerce\Api\V3\Model\Cart\InlineResponse201CouponsCouponCode $coupon_code coupon_code
      *
      * @return $this
      */
-    public function setId($id)
+    public function setCouponCode($coupon_code)
     {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name GiftCertificate-provided name that will appear in the control panel.
-     *
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets theme
-     *
-     * @return string
-     */
-    public function getTheme()
-    {
-        return $this->container['theme'];
-    }
-
-    /**
-     * Sets theme
-     *
-     * @param string $theme Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.
-     *
-     * @return $this
-     */
-    public function setTheme($theme)
-    {
-        $this->container['theme'] = $theme;
-
-        return $this;
-    }
-
-    /**
-     * Gets amount
-     *
-     * @return float
-     */
-    public function getAmount()
-    {
-        return $this->container['amount'];
-    }
-
-    /**
-     * Sets amount
-     *
-     * @param float $amount Value must be between 1.00 and 1,000.00 in the store's default currency.
-     *
-     * @return $this
-     */
-    public function setAmount($amount)
-    {
-        $this->container['amount'] = $amount;
-
-        return $this;
-    }
-
-    /**
-     * Gets is_taxable
-     *
-     * @return bool
-     */
-    public function getIsTaxable()
-    {
-        return $this->container['is_taxable'];
-    }
-
-    /**
-     * Sets is_taxable
-     *
-     * @param bool $is_taxable is_taxable
-     *
-     * @return $this
-     */
-    public function setIsTaxable($is_taxable)
-    {
-        $this->container['is_taxable'] = $is_taxable;
-
-        return $this;
-    }
-
-    /**
-     * Gets sender
-     *
-     * @return \BigCommerce\Api\V3\Model\Cart\ContactEntity
-     */
-    public function getSender()
-    {
-        return $this->container['sender'];
-    }
-
-    /**
-     * Sets sender
-     *
-     * @param \BigCommerce\Api\V3\Model\Cart\ContactEntity $sender sender
-     *
-     * @return $this
-     */
-    public function setSender($sender)
-    {
-        $this->container['sender'] = $sender;
-
-        return $this;
-    }
-
-    /**
-     * Gets recipient
-     *
-     * @return \BigCommerce\Api\V3\Model\Cart\ContactEntity
-     */
-    public function getRecipient()
-    {
-        return $this->container['recipient'];
-    }
-
-    /**
-     * Sets recipient
-     *
-     * @param \BigCommerce\Api\V3\Model\Cart\ContactEntity $recipient recipient
-     *
-     * @return $this
-     */
-    public function setRecipient($recipient)
-    {
-        $this->container['recipient'] = $recipient;
-
-        return $this;
-    }
-
-    /**
-     * Gets message
-     *
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->container['message'];
-    }
-
-    /**
-     * Sets message
-     *
-     * @param string $message Limited to 200 characters.
-     *
-     * @return $this
-     */
-    public function setMessage($message)
-    {
-        $this->container['message'] = $message;
+        $this->container['coupon_code'] = $coupon_code;
 
         return $this;
     }

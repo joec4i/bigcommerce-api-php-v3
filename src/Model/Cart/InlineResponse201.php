@@ -1,6 +1,6 @@
 <?php
 /**
- * Cart
+ * InlineResponse201
  *
  * PHP version 5
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \BigCommerce\Api\V3\ObjectSerializer;
 
 /**
- * Cart Class Doc Comment
+ * InlineResponse201 Class Doc Comment
  *
  * @category Class
  * @description A cart contains a collection of items, prices, discounts, etc.. It does not contain customer-related data.
@@ -41,7 +41,7 @@ use \BigCommerce\Api\V3\ObjectSerializer;
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Cart implements ModelInterface, ArrayAccess
+class InlineResponse201 implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class Cart implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'Cart';
+    protected static $swaggerModelName = 'inline_response_201';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
